@@ -71,7 +71,7 @@ export default function CRMApp() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [role, setRole] = useState<Role>("admin");
   const [userName, setUserName] = useState("Вася");
-  const [email, setEmail] = useState("admin@finflow.ru");
+  const [email, setEmail] = useState("admin@cursorcrm.ru");
   const [password, setPassword] = useState("Admin2026!");
   const [tab, setTab] = useState<Tab>("leads");
   const [leads, setLeads] = useState(leadsSeed);
@@ -149,7 +149,7 @@ export default function CRMApp() {
   function quickAccount(nextRole: Role, name = nextRole === "admin" ? "Вася" : "Алина") {
     setRole(nextRole);
     setUserName(name);
-    setEmail(nextRole === "admin" ? "admin@finflow.ru" : name === "Паша" ? "pasha@finflow.ru" : "manager@finflow.ru");
+    setEmail(nextRole === "admin" ? "admin@cursorcrm.ru" : name === "Паша" ? "pasha@cursorcrm.ru" : "manager@cursorcrm.ru");
     setPassword(nextRole === "admin" ? "Admin2026!" : name === "Паша" ? "Pasha2026!" : "Manager2026!");
   }
   function openLead(lead: Lead) { setSelectedLead(lead); setModal("leadDetails"); }
@@ -176,7 +176,7 @@ export default function CRMApp() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <button className="brand" onClick={() => setTab(role === "admin" ? "leads" : "workspace")}><span className="brand-mark">F</span><span>FinFlow <b>CRM</b></span></button>
+        <button className="brand" onClick={() => setTab(role === "admin" ? "leads" : "workspace")}><span className="brand-mark">C</span><span>Cursor <b>CRM</b></span></button>
         <nav className="main-nav">{nav.map(item => <button key={item.id} className={tab === item.id ? "active" : ""} onClick={() => { setTab(item.id); setQuery(""); }}><Icon>{item.icon}</Icon>{item.label}</button>)}</nav>
         <div className="user-area">
           <div className="user-copy"><strong>{managerName} {role === "admin" ? "Ковалёв" : managerName === "Алина" ? "Белова" : "Миронов"}</strong><span>{role === "admin" ? "Руководитель" : "Менеджер по продажам"}</span></div>
@@ -204,7 +204,7 @@ export default function CRMApp() {
 
 function Login({ email, password, role, userName, setEmail, setPassword, quickAccount, onSubmit }: { email: string; password: string; role: Role; userName: string; setEmail: (v: string) => void; setPassword: (v: string) => void; quickAccount: (r: Role, name?: string) => void; onSubmit: (e: FormEvent) => void }) {
   return <main className="login-page"><section className="login-card">
-    <div className="login-brand"><span className="brand-mark large">F</span><div><strong>FinFlow</strong><span>Sales workspace</span></div></div>
+    <div className="login-brand"><span className="brand-mark large">C</span><div><strong>Cursor CRM</strong><span>Отдел продаж</span></div></div>
     <div className="login-heading"><p>ДОБРО ПОЖАЛОВАТЬ</p><h1>Войдите в CRM</h1><span>Все заявки, оплаты и планы — в одном окне.</span></div>
     <div className="account-switch three"><button onClick={() => quickAccount("admin", "Вася")} className={role === "admin" ? "active" : ""}><span className="mini-avatar green">ВК</span><span><b>Вася</b><small>Руководитель</small></span><i>✓</i></button><button onClick={() => quickAccount("manager", "Алина")} className={role === "manager" && userName === "Алина" ? "active" : ""}><span className="mini-avatar violet">АБ</span><span><b>Алина</b><small>Менеджер</small></span><i>✓</i></button><button onClick={() => quickAccount("manager", "Паша")} className={role === "manager" && userName === "Паша" ? "active" : ""}><span className="mini-avatar blue">ПМ</span><span><b>Паша</b><small>Менеджер</small></span><i>✓</i></button></div>
     <form onSubmit={onSubmit} className="login-form"><label>Электронная почта<input value={email} onChange={e => setEmail(e.target.value)} /></label><label>Пароль<div className="password-field"><input type="text" value={password} onChange={e => setPassword(e.target.value)} /><span>◉</span></div></label><div className="remember"><label><input type="checkbox" defaultChecked /> Запомнить меня</label><button type="button">Забыли пароль?</button></div><button className="primary wide" type="submit">Войти в систему <span>→</span></button></form>

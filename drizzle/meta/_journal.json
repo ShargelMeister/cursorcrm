@@ -8,6 +8,13 @@
       "when": 1786569869446,
       "tag": "0000_high_puma",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1786571321770,
+      "tag": "0001_wise_fabian_cortez",
+      "breakpoints": true
     }
   ]
 }
